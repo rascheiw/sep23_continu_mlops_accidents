@@ -1,4 +1,4 @@
-sep23_continu_mlops_accidents_local
+sep23_continu_mlops_accidents
 ==============================
 
 Projet fil rouge formation MLOps Septembre 2023
