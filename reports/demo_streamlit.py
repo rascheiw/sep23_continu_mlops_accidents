@@ -162,7 +162,8 @@ def make_prediction_Victimes():
 # Interface utilisateur Streamlit
 st.title("sep23_continu_mops_accidents")
 st.image('./figures/Accident.png')
-st.markdown('[Présentation du projet](https://www.data.gouv.fr/en/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2022/) ')
+st.markdown('[Présentation du projet](https://docs.google.com/document/d/1fsapUBaCf9MyIJVW1ClVA07Y4yklb_2CNDxokV93wa0/edit) ')
+# lien gouv si le lien google doc ne fonctionne plus https://www.data.gouv.fr/en/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2022/
 
 # Bouton pour démarrer l'API
 if st.button("Démarrer l'API"):
