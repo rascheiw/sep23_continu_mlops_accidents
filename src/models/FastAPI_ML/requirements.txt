@@ -1,0 +1,12 @@
+# Eléments API
+fastapi
+uvicorn
+
+# Librarie def Class objet
+pydantic
+
+# Librairies ML & Manip data
+numpy
+pandas
+scikit-learn
+joblib
