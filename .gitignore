@@ -1,2 +1,3 @@
 data/
-sfsdf
+src/models/FastAPI_ML/RandomForestClassifier_Params.joblib
+src/models/FastAPI_ML/RandomForestClassifier_BestParams.joblib
