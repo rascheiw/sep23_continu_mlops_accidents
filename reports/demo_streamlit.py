@@ -175,8 +175,7 @@ if st.button("Démarrer l'API"):
 # Bouton pour vérifier le bon fonctionnement de l'API
 if st.button("Vérifier l'API"):
     st.write("Vérification en cours...")
-    result = check_api()
-    st.write(result)
+    check_api()
 
 # Bouton pour effectuer une prédiction classe indemnes via une requete sur l'API
 if st.button("Effectuer une prédiction indemnes"):
