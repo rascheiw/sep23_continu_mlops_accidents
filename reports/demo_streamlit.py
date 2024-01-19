@@ -170,9 +170,7 @@ st.markdown('[Présentation du projet](https://docs.google.com/document/d/1fsapU
 # Bouton pour démarrer l'API
 if st.button("Démarrer l'API"):
     st.write("L'API est en cours de démarrage...")
-#    result1 = start_api()
     st.write("L'API a été démarrée avec succès!")
- #   st.write(result1)
 
 # Bouton pour vérifier le bon fonctionnement de l'API
 if st.button("Vérifier l'API"):
