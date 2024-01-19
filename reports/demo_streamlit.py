@@ -9,11 +9,13 @@ def start_api():
 def check_api():
     # Envoie une requête GET à l'API avec les en-têtes appropriés
     try:
-        url = "http://35.181.233.45:8080/api_status"
+        url = "http://35.181.233.45:80/api_status"
         headers = {'accept': 'application/json'}
         response = requests.get(url, headers=headers)
 
         if response.status_code == 200:
+            result = response.json()
+            st.write(result)
             return "L'API est accessible et fonctionne correctement."
         else:
             return f"Erreur lors de la vérification de l'API. Code de statut : {response.status_code}"
@@ -67,7 +69,7 @@ def make_prediction_Indemnes():
         }
 
     # URL de l'API
-    url = "http://35.181.233.45:8080/predict"
+    url = "http://35.181.233.45:80/predict"
 
     # En-têtes de la requête
     headers = {
@@ -136,7 +138,7 @@ def make_prediction_Victimes():
         }
 
     # URL de lAPI
-    url = "http://35.181.233.45:8080/predict"
+    url = "http://35.181.233.45:80/predict"
 
     # En-têtes de la requête
     headers = {
@@ -168,8 +170,9 @@ st.markdown('[Présentation du projet](https://docs.google.com/document/d/1fsapU
 # Bouton pour démarrer l'API
 if st.button("Démarrer l'API"):
     st.write("L'API est en cours de démarrage...")
-    start_api()
+#    result1 = start_api()
     st.write("L'API a été démarrée avec succès!")
+ #   st.write(result1)
 
 # Bouton pour vérifier le bon fonctionnement de l'API
 if st.button("Vérifier l'API"):
