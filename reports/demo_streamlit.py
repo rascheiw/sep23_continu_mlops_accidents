@@ -1,33 +1,40 @@
 import streamlit as st
 import subprocess
 import requests
-import members
 import config
 import time
 
+def progress_bar():
+        progress_text = "En attente de la réponse de l'API"
+        my_bar = st.progress(0, text=progress_text)
+
+        for percent_complete in range(100):
+            time.sleep(0.005)
+            my_bar.progress(percent_complete + 1, text=progress_text)
+        time.sleep(1)
+        my_bar.empty()
 
 def start_api():
     # Exécutez la commande uvicorn en arrière-plan
     subprocess.Popen(["uvicorn", "main:api", "--reload"])
 
 def check_api():
-    with st.spinner("Vérification en cours..."):
         # Envoie une requête GET à l'API avec les en-têtes appropriés
-        try:
-            url = "http://35.181.233.45:80/api_status"
-            headers = {'accept': 'application/json'}
-            response = requests.get(url, headers=headers)
+    try:
+        url = "http://35.181.233.45:80/api_status"
+        headers = {'accept': 'application/json'}
+        response = requests.get(url, headers=headers)
 
-            if response.status_code == 200:
-                result = response.json()
-                st.write(result)
-                st.success("L'API est accessible et fonctionne correctement.", icon="✅")
+        if response.status_code == 200:
+            result = response.json()
+            st.write(result)
+            st.success("L'API est accessible et fonctionne correctement.", icon="✅")
             
-            else:
-                return f"Erreur lors de la vérification de l'API. Code de statut : {response.status_code}"
+        else:
+            return f"Erreur lors de la vérification de l'API. Code de statut : {response.status_code}"
 
-        except requests.exceptions.RequestException as e:
-            return f"Erreur lors de la requête GET : {str(e)}"
+    except requests.exceptions.RequestException as e:
+        return f"Erreur lors de la requête GET : {str(e)}"
 
 def make_prediction_Indemnes():
     # Données de prédiction au format JSON
@@ -168,10 +175,27 @@ def make_prediction_Victimes():
         st.write(f"Erreur lors de la requête POST : {str(e)}")
 
 # Interface utilisateur Streamlit
-st.title("RouteGuard AI")
-st.header("Solution d’assistance de centre d’appel d’urgence routière")
+        # Définir le style de la sidebar
+sidebar_style = """
+    background-color: #3498db; /* Bleu */
+    padding: 20px;
+"""
+
+# Appliquer le style à la sidebar
+st.markdown(
+    f"""
+    <style>
+        .sidebar .sidebar-content {{
+            {sidebar_style}
+        }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+st.sidebar.title("RouteGuard AI")
+st.sidebar.header("Solution d’assistance de centre d’appel d’urgence routière")
 st.image('./figures/Accident.png')
-st.markdown('[Présentation du projet](https://docs.google.com/document/d/1fsapUBaCf9MyIJVW1ClVA07Y4yklb_2CNDxokV93wa0/edit) ')
+st.sidebar.markdown('[Présentation du projet](https://docs.google.com/document/d/1fsapUBaCf9MyIJVW1ClVA07Y4yklb_2CNDxokV93wa0/edit) ')
 # lien gouv si le lien google doc ne fonctionne plus https://www.data.gouv.fr/en/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2022/
 st.sidebar.markdown("---")
 st.sidebar.markdown(f"## {config.PROMOTION}")
@@ -185,16 +209,19 @@ for member in config.TEAM_MEMBERS:
 #    st.write("L'API a été démarrée avec succès!")
 
 # Bouton pour vérifier le bon fonctionnement de l'API
-if st.button("Vérifier l'API"):
-    st.write("Vérification en cours...")
+if st.sidebar.button("Vérifier l'API"):
+    result_container = st.empty()
+    progress_bar()
     check_api()
 
 # Bouton pour effectuer une prédiction classe indemnes via une requete sur l'API
-if st.button("Effectuer une prédiction indemnes"):
-    st.write("Prédiction en cours...")
+if st.sidebar.button("Effectuer une prédiction indemnes"):
+    result_container = st.empty()
+    progress_bar()
     make_prediction_Indemnes()
 
 # Bouton pour effectuer une prédiction classe bléssés et tués via une requete sur l'API
-if st.button("Effectuer une prédiction victimes"):
-    st.write("Prédiction en cours...")
+if st.sidebar.button("Effectuer une prédiction victimes"):
+    result_container = st.empty()
+    progress_bar()
     make_prediction_Victimes()
