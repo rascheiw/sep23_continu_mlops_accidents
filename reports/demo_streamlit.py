@@ -1,27 +1,33 @@
 import streamlit as st
 import subprocess
 import requests
+import members
+import config
+import time
+
 
 def start_api():
     # Exécutez la commande uvicorn en arrière-plan
     subprocess.Popen(["uvicorn", "main:api", "--reload"])
 
 def check_api():
-    # Envoie une requête GET à l'API avec les en-têtes appropriés
-    try:
-        url = "http://35.181.233.45:80/api_status"
-        headers = {'accept': 'application/json'}
-        response = requests.get(url, headers=headers)
+    with st.spinner("Vérification en cours..."):
+        # Envoie une requête GET à l'API avec les en-têtes appropriés
+        try:
+            url = "http://35.181.233.45:80/api_status"
+            headers = {'accept': 'application/json'}
+            response = requests.get(url, headers=headers)
 
-        if response.status_code == 200:
-            result = response.json()
-            st.write(result)
-            return "L'API est accessible et fonctionne correctement."
-        else:
-            return f"Erreur lors de la vérification de l'API. Code de statut : {response.status_code}"
+            if response.status_code == 200:
+                result = response.json()
+                st.write(result)
+                st.success("L'API est accessible et fonctionne correctement.", icon="✅")
+            
+            else:
+                return f"Erreur lors de la vérification de l'API. Code de statut : {response.status_code}"
 
-    except requests.exceptions.RequestException as e:
-        return f"Erreur lors de la requête GET : {str(e)}"
+        except requests.exceptions.RequestException as e:
+            return f"Erreur lors de la requête GET : {str(e)}"
 
 def make_prediction_Indemnes():
     # Données de prédiction au format JSON
@@ -162,15 +168,21 @@ def make_prediction_Victimes():
         st.write(f"Erreur lors de la requête POST : {str(e)}")
 
 # Interface utilisateur Streamlit
-st.title("sep23_continu_mops_accidents")
+st.title("RouteGuard AI")
+st.header("Solution d’assistance de centre d’appel d’urgence routière")
 st.image('./figures/Accident.png')
 st.markdown('[Présentation du projet](https://docs.google.com/document/d/1fsapUBaCf9MyIJVW1ClVA07Y4yklb_2CNDxokV93wa0/edit) ')
 # lien gouv si le lien google doc ne fonctionne plus https://www.data.gouv.fr/en/datasets/bases-de-donnees-annuelles-des-accidents-corporels-de-la-circulation-routiere-annees-de-2005-a-2022/
+st.sidebar.markdown("---")
+st.sidebar.markdown(f"## {config.PROMOTION}")
+st.sidebar.markdown("### Team members:")
+for member in config.TEAM_MEMBERS:
+    st.sidebar.markdown(member.sidebar_markdown(), unsafe_allow_html=True)
 
 # Bouton pour démarrer l'API
-if st.button("Démarrer l'API"):
-    st.write("L'API est en cours de démarrage...")
-    st.write("L'API a été démarrée avec succès!")
+#if st.button("Démarrer l'API"):
+#    st.write("L'API est en cours de démarrage...")
+#    st.write("L'API a été démarrée avec succès!")
 
 # Bouton pour vérifier le bon fonctionnement de l'API
 if st.button("Vérifier l'API"):
@@ -186,4 +198,3 @@ if st.button("Effectuer une prédiction indemnes"):
 if st.button("Effectuer une prédiction victimes"):
     st.write("Prédiction en cours...")
     make_prediction_Victimes()
-
