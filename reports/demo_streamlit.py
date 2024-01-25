@@ -14,14 +14,10 @@ def progress_bar():
         time.sleep(1)
         my_bar.empty()
 
-def start_api():
-    # Exécutez la commande uvicorn en arrière-plan
-    subprocess.Popen(["uvicorn", "main:api", "--reload"])
-
 def check_api():
         # Envoie une requête GET à l'API avec les en-têtes appropriés
     try:
-        url = "http://35.181.233.45:80/api_status"
+        url = "http://mlopsaccidents.cloudns.ch/mlapi/api_status"
         headers = {'accept': 'application/json'}
         response = requests.get(url, headers=headers)
 
@@ -82,7 +78,7 @@ def make_prediction_Indemnes():
         }
 
     # URL de l'API
-    url = "http://35.181.233.45:80/predict"
+    url = "http://mlopsaccidents.cloudns.ch/mlapi/predict"
 
     # En-têtes de la requête
     headers = {
@@ -151,7 +147,7 @@ def make_prediction_Victimes():
         }
 
     # URL de lAPI
-    url = "http://35.181.233.45:80/predict"
+    url = "http://mlopsaccidents.cloudns.ch/mlapi/predict"
 
     # En-têtes de la requête
     headers = {
@@ -202,11 +198,6 @@ st.sidebar.markdown(f"## {config.PROMOTION}")
 st.sidebar.markdown("### Team members:")
 for member in config.TEAM_MEMBERS:
     st.sidebar.markdown(member.sidebar_markdown(), unsafe_allow_html=True)
-
-# Bouton pour démarrer l'API
-#if st.button("Démarrer l'API"):
-#    st.write("L'API est en cours de démarrage...")
-#    st.write("L'API a été démarrée avec succès!")
 
 # Bouton pour vérifier le bon fonctionnement de l'API
 if st.sidebar.button("Vérifier l'API"):
