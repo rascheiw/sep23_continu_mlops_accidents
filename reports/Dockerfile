@@ -1,20 +1,23 @@
-# Utilisez une image de Python comme base
+# Imge python
 FROM python:3.9
 
-# Définissez le répertoire de travail dans le conteneur
+LABEL Raphaël SCHEIWILLER <rascheiw@gmail.com>
+
+# Répertoire de travail du conteneur
 WORKDIR /app
 
-# Copiez le fichier requirements.txt dans le conteneur
+# Copie u fichier de requirements
 COPY requirements.txt .
 
-# Installez les dépendances Python
+# Installation des dépendances Python
 RUN pip install -r requirements.txt
 
-# Copiez tous les fichiers de l'application dans le conteneur
-COPY . .
+# Copie des fichiers de l'application dans le conteneur
+COPY config.py members.py demo_streamlit.py ./
+COPY figures/Accident.png ./figures/
 
-# Exposez le port sur lequel votre application écoute
+# Exposition du port 8501
 EXPOSE 8501
 
-# Démarrez l'application Streamlit
+# Démarrage de l'application Streamlit
 CMD ["streamlit", "run", "demo_streamlit.py"]
