@@ -40,8 +40,8 @@ jobs:
           file: ./reports/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: toanbk21096/go-github-actions:latest
-          cache-from: type=registry,ref=toanbk21096/go-github-actions:latest
+          tags: rascheiw/streamlit_accidents:latest
+          cache-from: type=registry,ref=rascheiw/streamlit_accidents:latest
           cache-to: type=inline
 
       - name: Deploy Image
@@ -64,9 +64,9 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            docker stop go-container || true && docker rmi toanbk21096/go-github-actions
-            docker pull toanbk21096/go-github-actions:latest
-            docker run -d --rm --name go-container -p 8081:8081 toanbk21096/go-github-actions
+            docker stop go-container || true && docker rmi rascheiw/streamlit_accidents
+            docker pull rascheiw/streamlit_accidents:latest
+            docker run -d --rm --name go-container -p 8081:8081 rascheiw/streamlit_accidents
       # Send slack alert after done pipeline
       - name: Send slack notification
         uses: 8398a7/action-slack@v3
