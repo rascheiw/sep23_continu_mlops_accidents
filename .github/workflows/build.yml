@@ -51,7 +51,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [build-docker]
-    if: ${{ github.ref == 'refs/heads/main' }} # && github.event_name == 'push' Only run this workflow if it is main branch on push event
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push'}} # Only run this workflow if it is main branch on push event
     steps:
       - uses: actions/checkout@v2
 
