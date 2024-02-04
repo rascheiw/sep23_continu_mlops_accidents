@@ -18,7 +18,7 @@ def progress_bar():
 def check_api():
         # Envoie une requête GET à l'API avec les en-têtes appropriés
     try:
-        url = "http://mlopsaccidents.cloudns.ch/mlapi/api_status"
+        url = "https://mlopsaccidents.hopto.org/mlapi/api_status"
         headers = {'accept': 'application/json'}
         response = requests.get(url, headers=headers)
 
@@ -79,7 +79,7 @@ def make_prediction_Indemnes():
         }
 
     # URL de l'API
-    url = "http://mlopsaccidents.cloudns.ch/mlapi/predict"
+    url = "https://mlopsaccidents.hopto.org/mlapi/predict"
 
     # En-têtes de la requête
     headers = {
@@ -148,7 +148,7 @@ def make_prediction_Victimes():
         }
 
     # URL de lAPI
-    url = "http://mlopsaccidents.cloudns.ch/mlapi/predict"
+    url = "https://mlopsaccidents.hopto.org/mlapi/predict"
 
     # En-têtes de la requête
     headers = {
