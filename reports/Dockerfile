@@ -14,6 +14,7 @@ RUN pip install -r requirements.txt
 
 # Copie des fichiers de l'application dans le conteneur
 COPY config.py members.py demo_streamlit.py .env ./
+
 COPY figures/Accident.png ./figures/
 
 # Exposition du port 8501
