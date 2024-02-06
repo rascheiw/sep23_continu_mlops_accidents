@@ -19,7 +19,7 @@ RUN chmod +x generate_env.sh
 # Génération du fichier.env
 ARG username_env
 ARG password_env
-RUN ./generate_env.sh username_env=${username_env} password_env=${password_env}
+RUN ./generate_env.sh username_env password_env
 
 # Copie des fichiers de l'application dans le conteneur
 COPY config.py members.py demo_streamlit.py ./
