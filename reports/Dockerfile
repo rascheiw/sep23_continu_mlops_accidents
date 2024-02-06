@@ -1,5 +1,5 @@
 # Imge python
-FROM python:3.10.2-alpine
+FROM python:3.9
 
 LABEL Raphaël SCHEIWILLER <rascheiw@gmail.com>
 
