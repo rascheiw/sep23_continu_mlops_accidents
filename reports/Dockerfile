@@ -14,6 +14,7 @@ RUN pip install -r requirements.txt
 
 # Copie du script de génération de .env
 COPY generate_env.sh .
+RUN chmod +x generate_env.sh
 
 # Génération du fichier.env
 RUN ./generate_env.sh $username $password
