@@ -38,7 +38,6 @@ jobs:
         with:
           build-args: |
             username_env=${{ secrets.ENV_USERNAME }}
-          build-args: |
             password_env: ${{ secrets.ENV_PASSWORD }}
           context: ./reports
           file: ./reports/Dockerfile
