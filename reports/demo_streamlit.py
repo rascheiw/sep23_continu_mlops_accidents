@@ -4,8 +4,6 @@ import os
 import time
 import requests
 
-from google.auth import default
-from google.auth.transport import requests as grequests
 from dotenv import load_dotenv
 
 import config
