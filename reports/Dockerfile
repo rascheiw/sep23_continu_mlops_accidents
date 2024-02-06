@@ -6,15 +6,14 @@ LABEL Raphaël SCHEIWILLER <rascheiw@gmail.com>
 # Répertoire de travail du conteneur
 WORKDIR /app
 
-# Copie u fichier de requirements
+# Copie du fichier de requirements
 COPY requirements.txt .
 
 # Installation des dépendances Python
 RUN pip install -r requirements.txt
 
 # Copie des fichiers de l'application dans le conteneur
-COPY config.py members.py demo_streamlit.py .env ./
-
+COPY config.py members.py demo_streamlit.py .env .
 COPY figures/Accident.png ./figures/
 
 # Exposition du port 8501
