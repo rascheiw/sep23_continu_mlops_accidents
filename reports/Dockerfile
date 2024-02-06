@@ -13,14 +13,14 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copie du script de génération de .env
-COPY generate_env.sh .
-RUN chmod +x generate_env.sh
+#COPY generate_env.sh .
+#RUN chmod +x generate_env.sh
 
 # Génération du fichier.env
-RUN ./generate_env.sh $username $password
+#RUN ./generate_env.sh $username $password
 
 # Copie des fichiers de l'application dans le conteneur
-COPY config.py members.py demo_streamlit.py ./
+COPY config.py members.py demo_streamlit.py .env ./
 COPY figures/Accident.png ./figures/
 
 # Exposition du port 8501
