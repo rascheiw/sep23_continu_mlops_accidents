@@ -21,7 +21,7 @@ def progress_bar():
 def check_api():
         # Envoie une requête GET à l'API avec les en-têtes appropriés  
     try:
-        url = "http://10.43.0.16:8081/mlapi/api_status"
+        url = "http://10.43.0.16:8080/mlapi/api_status"
         headers = {'accept': 'application/json'}
         response = requests.get(url, headers=headers)
 
@@ -82,7 +82,7 @@ def make_prediction_Indemnes():
         }
 
     # URL de l'API
-    url = "http://10.43.0.16:8081/mlapi/predict"
+    url = "http://10.43.0.16:8080/mlapi/predict"
 
     # En-têtes de la requête
     headers = {
@@ -151,7 +151,7 @@ def make_prediction_Victimes():
         }
 
     # URL de lAPI
-    url = "http://10.43.0.16:8081/mlapi/predict"
+    url = "http://10.43.0.16:8080/mlapi/predict"
 
     # En-têtes de la requête
     headers = {
