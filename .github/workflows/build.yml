@@ -46,6 +46,7 @@ jobs:
           tags: rascheiw/streamlit_accidents:latest
           cache-from: type=registry,ref=rascheiw/streamlit_accidents:latest
           cache-to: type=inline
+          platforms: linux/amd64,linux/arm64
 
       - name: Deploy Image
         run: echo ${{ steps.docker_build.outputs.digest }}
