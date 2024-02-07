@@ -37,8 +37,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           build-args: |
-            username_env=${{ secrets.ENV_USERNAME }}
-            password_env: ${{ secrets.ENV_PASSWORD }}
+            ENV_USERNAME=${{ secrets.ENV_USERNAME }}
+            ENV_PASSWORD=${{ secrets.ENV_PASSWORD }}
           context: ./reports
           file: ./reports/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
