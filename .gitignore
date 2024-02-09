@@ -3,3 +3,4 @@ reports/venv/
 reports/__pycache__/
 .env
 demo_test.py
+auth.py

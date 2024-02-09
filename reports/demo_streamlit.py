@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import time
 import requests
+import streamlit_authenticator as stauth
 
 from dotenv import load_dotenv
 
@@ -214,7 +215,7 @@ if not st.session_state.authenticated:
     username = st.text_input("Nom d'utilisateur")
     password = st.text_input("Mot de passe", type="password")
 
-    if st.button("Se connecter"):
+    if st.button("Se connecter à streamlit"):
         if authenticate(username, password):
             st.session_state.authenticated = True
             st.success("Connexion réussie !")
