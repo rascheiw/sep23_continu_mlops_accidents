@@ -1,3 +1,1 @@
-test1
-test2
-test3 webhooks configured in docker hub
+# fichier à modifier lors de la soutenance pour effectuer un push et déclencher le workflows
