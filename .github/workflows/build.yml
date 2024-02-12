@@ -43,7 +43,7 @@ jobs:
           file: ./reports/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: rascheiw/streamlit_accidents:latest
+          tags: ${{ if eq(github.ref, 'refs/heads/main') }} rascheiw/streamlit_accidents:latest ${{ else if eq(github.ref, 'refs/heads/Raph') }} rascheiw/streamlit_accidents:dev ${{ endif }}
           cache-from: type=registry,ref=rascheiw/streamlit_accidents:latest
           cache-to: type=inline
           platforms: linux/amd64,linux/arm64
