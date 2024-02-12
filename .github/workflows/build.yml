@@ -53,7 +53,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: rascheiw/streamlit_accidents:${{ steps.set_tag.outputs.tag }}
-          cache-from: type=registry,ref=rascheiw/streamlit_accidents:latest
+          cache-from: type=registry,ref=rascheiw/streamlit_accidents:${{ steps.set_tag.outputs.tag }}
           cache-to: type=inline
           platforms: linux/amd64,linux/arm64
 
